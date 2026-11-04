@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 12th PCB - Biology Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- FAKE STUDY PORTAL -->
+  <div id="study-portal">
+    <nav class="navbar">
+      <div class="logo">🧬 BioNotes 12th</div>
+      <div class="nav-links">
+        <a href="#">Chapters</a>
+        <a href="#">Syllabus</a>
+        <button class="login-btn" onclick="showLogin()">Student Login</button>
+      </div>
+    </nav>
+    <div class="hero-section">
+      <h1>Welcome to 12th PCB Biology Notes</h1>
+      <p>Complete study material for Botany and Zoology. Download PDFs, practice MCQs, and prepare for your board exams.</p>
+      <div class="chapter-list">
+        <div class="card">Chapter 1: Reproduction in Organisms</div>
+        <div class="card">Chapter 2: Genetics and Evolution</div>
+        <div class="card">Chapter 3: Human Health and Disease</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASSWORD MODAL (Hidden by default) -->
+  <div id="login-modal" class="hidden">
+    <div class="modal-content">
+      <span class="close" onclick="hideLogin()">&times;</span>
+      <h2>Secure Access</h2>
+      <p>Enter your access key to view notes.</p>
+      <input type="password" id="password-input" placeholder="Enter Password">
+      <button onclick="checkPassword()">Verify</button>
+      <p id="error-msg" class="hidden" style="color: red; font-size: 12px;">Wrong Password!</p>
+    </div>
+  </div>
+
+  <!-- CHATGPT STYLE INTERFACE (Hidden by default) -->
+  <div id="chatgpt-interface" class="hidden">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="new-chat-btn">+ New chat</button>
+      <div class="history-list">
+        <p>Biology Notes Q&A</p>
+        <p>Zoology Doubt</p>
+      </div>
+    </div>
+    
+    <!-- Main Chat Area -->
+    <div class="main-chat">
+      <div class="chat-header">
+        <h3>Model: Secure Chat v4</h3>
+        <span id="online-status">Checking status...</span>
+      </div>
+      
+      <div id="messages-container">
+        <!-- Messages will load here -->
+      </div>
+
+      <div class="input-container">
+        <div class="input-box">
+          <button onclick="sendMedia()" class="attachment-btn">📎</button>
+          <input type="text" id="message-input" placeholder="Send a message..." onkeypress="handleEnter(event)">
+          <button onclick="sendMessage()" class="send-btn">➤</button>
+        </div>
+        <div class="footer-text">Free Research Preview. ChatGPT style interface for secure notes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE & JS SCRIPT -->
+  <script type="module" src="app.js"></script>
+  <script>
+    // UI Controls (Non-Firebase)
+    function showLogin() {
+      document.getElementById('login-modal').classList.remove('hidden');
+    }
+    function hideLogin() {
+      document.getElementById('login-modal').classList.add('hidden');
+    }
+    function checkPassword() {
+      const pass = document.getElementById('password-input').value;
+      if (pass === "DAIRY MILK") {
+        document.getElementById('study-portal').classList.add('hidden');
+        document.getElementById('login-modal').classList.add('hidden');
+        document.getElementById('chatgpt-interface').style.display = 'flex';
+        window.startFirebaseApp(); // Starts chat
+      } else {
+        document.getElementById('error-msg').classList.remove('hidden');
+      }
+    }
+    function handleEnter(e) {
+      if (e.key === 'Enter') window.sendMessage();
+    }
+  </script>
+</body>
+</html>
